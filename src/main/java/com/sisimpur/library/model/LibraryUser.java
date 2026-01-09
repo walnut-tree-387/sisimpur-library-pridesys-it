@@ -19,5 +19,8 @@ public class LibraryUser {
     private String username;
     private String name;
     @Enumerated(EnumType.STRING)
-    private UserStatus status;
+    private UserStatus status =  UserStatus.ACTIVE;
+
+    @Enumerated(EnumType.STRING)
+    private DeleteStatus deleteStatus = DeleteStatus.NO;
 }

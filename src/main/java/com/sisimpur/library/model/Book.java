@@ -15,6 +15,7 @@ import lombok.Setter;
 public class Book {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "title")
@@ -27,10 +28,12 @@ public class Book {
     private int publishedYear;
 
     @Enumerated(EnumType.STRING)
-    private AvailableStatus status;
+    private AvailableStatus status = AvailableStatus.AVAILABLE;
 
     @ManyToOne()
     @JoinColumn(name = "author_id")
     private Author author;
-    // Add more fields as needed
+
+    @Enumerated(EnumType.STRING)
+    private DeleteStatus deleteStatus = DeleteStatus.NO;
 }
