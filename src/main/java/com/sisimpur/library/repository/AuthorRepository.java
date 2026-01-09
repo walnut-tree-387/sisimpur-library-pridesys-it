@@ -2,8 +2,6 @@ package com.sisimpur.library.repository;
 
 import com.sisimpur.library.model.Author;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.sisimpur.library.model.Book;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -11,7 +9,8 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface BookRepository extends JpaRepository<Book, Long> {
-    @Query(" SELECT b From Book b WHERE b.deleteStatus = 'NO' AND b.id = :id ")
-    Optional<Book> findBookById(@Param("id") Long id);
+public interface AuthorRepository extends JpaRepository<Author, Long> {
+    @Query(" SELECT a From Author a WHERE a.deleteStatus = 'NO' AND a.id = :id ")
+    Optional<Author> findAuthorById(@Param("id") Long id);
+
 }
