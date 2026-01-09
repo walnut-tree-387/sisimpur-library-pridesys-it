@@ -18,6 +18,8 @@ public class Author {
     private Long id;
     @Column(length = 100)
     private String name;
+    @Column(columnDefinition = "TEXT")
+    private String biography;
     @Enumerated(EnumType.STRING)
     private DeleteStatus deleteStatus = DeleteStatus.NO;
 }

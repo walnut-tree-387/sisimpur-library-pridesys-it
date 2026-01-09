@@ -16,8 +16,10 @@ public class LibraryUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String username;
+    @Column(length = 100)
     private String name;
+    @Column(unique = true)
+    private String email;
     @Enumerated(EnumType.STRING)
     private UserStatus status =  UserStatus.ACTIVE;
 
