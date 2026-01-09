@@ -1,9 +1,6 @@
 package com.sisimpur.library.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +17,7 @@ public class Book {
     @Id
     private Long id;
 
-    @Column(name = "title", length = 255)
+    @Column(name = "title")
     private String title;
 
     @Column(name = "genre", length = 100)
@@ -29,5 +26,11 @@ public class Book {
     @Column(name = "published_year")
     private int publishedYear;
 
+    @Enumerated(EnumType.STRING)
+    private AvailableStatus status;
+
+    @ManyToOne()
+    @JoinColumn(name = "author_id")
+    private Author author;
     // Add more fields as needed
 }
