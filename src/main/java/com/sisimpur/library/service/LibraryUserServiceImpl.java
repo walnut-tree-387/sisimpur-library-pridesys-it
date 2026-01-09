@@ -5,10 +5,13 @@ import com.sisimpur.library.dto.users.LibraryUserCreateDto;
 import com.sisimpur.library.dto.users.LibraryUserGetDto;
 import com.sisimpur.library.dto.users.LibraryUserUpdateDto;
 import com.sisimpur.library.exceptions.types.ResourceNotFoundException;
-import com.sisimpur.library.model.Author;
 import com.sisimpur.library.model.DeleteStatus;
 import com.sisimpur.library.model.LibraryUser;
 import com.sisimpur.library.repository.LibraryUserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -56,5 +59,12 @@ public class LibraryUserServiceImpl implements LibraryUserService{
     @Override
     public LibraryUserGetDto getUserById(Long id) {
         return libraryUserConverter.doGetMapping(getById(id));
+    }
+
+    @Override
+    public Page<LibraryUserRepository.LibraryUserExt> getAllUsers(Optional<Integer> page, Optional<Integer> size) {
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        Pageable pageable = PageRequest.of(page.orElse(0), size.orElse(10), sort);
+        return libraryUserRepository.getAllUsers(pageable);
     }
 }

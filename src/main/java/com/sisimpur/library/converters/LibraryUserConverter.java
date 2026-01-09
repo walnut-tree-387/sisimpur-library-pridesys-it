@@ -19,6 +19,7 @@ public class LibraryUserConverter {
         LibraryUserGetDto libraryUserGetDto = new LibraryUserGetDto();
         libraryUserGetDto.setName(libraryUser.getName());
         libraryUserGetDto.setEmail(libraryUser.getEmail());
+        libraryUserGetDto.setId(libraryUser.getId());
         return libraryUserGetDto;
     }
     public LibraryUser doUpdateMapping(LibraryUserUpdateDto dto, LibraryUser libraryUser) {

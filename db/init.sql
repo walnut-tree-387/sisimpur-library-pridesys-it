@@ -2,14 +2,17 @@
 CREATE TABLE library_users (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    email VARCHAR UNIQUE NOT NULL
+    email VARCHAR(100) UNIQUE NOT NULL,
+    status VARCHAR(20) NOT NULL DEFAULT 'ACTIVE',
+    delete_status VARCHAR(20) NOT NULL DEFAULT 'NO'
 );
 
 -- Create Author table
 CREATE TABLE authors (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    biography TEXT
+    biography TEXT,
+    delete_status VARCHAR(20) NOT NULL DEFAULT 'NO'
 );
 
 -- Create Book table
@@ -19,6 +22,8 @@ CREATE TABLE books (
     author_id INT NOT NULL,
     published_year INT,
     genre VARCHAR(100),
+    delete_status VARCHAR(20) NOT NULL DEFAULT 'NO',
+    available_status VARCHAR(20) NOT NULL DEFAULT 'AVAILABLE',
     FOREIGN KEY (author_id) REFERENCES authors(id) ON DELETE CASCADE
 );
 CREATE TABLE book_lent (

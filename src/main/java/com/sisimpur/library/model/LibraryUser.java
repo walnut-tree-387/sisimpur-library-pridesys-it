@@ -18,7 +18,7 @@ public class LibraryUser {
     private Long id;
     @Column(length = 100)
     private String name;
-    @Column(unique = true)
+    @Column(unique = true, length = 100)
     private String email;
     @Enumerated(EnumType.STRING)
     private UserStatus status =  UserStatus.ACTIVE;

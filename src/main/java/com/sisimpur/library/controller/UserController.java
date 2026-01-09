@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {
@@ -37,5 +39,9 @@ public class UserController {
     public ResponseEntity<Void> delete(@PathVariable Long id){
         libraryUserService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllUsers(@RequestParam Optional<Integer> page, @RequestParam Optional<Integer> size){
+        return new ResponseEntity<>(libraryUserService.getAllUsers(page, size), HttpStatus.OK);
     }
 }
