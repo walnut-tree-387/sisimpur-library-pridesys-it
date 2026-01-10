@@ -20,22 +20,23 @@ public class BookConverter {
         BookGetDto bookGetDto = new BookGetDto();
         mapEntityToBaseDto(book, bookGetDto);
         bookGetDto.setAuthorName(book.getAuthor().getName());
+        bookGetDto.setId(book.getId());
+        bookGetDto.setAvailableStatus(book.getAvailableStatus());
         return bookGetDto;
     }
     public Book doUpdateMapping(BookUpdateDto bookUpdateDto, Book previousBook, Author author) {
         mapBaseDtoToEntity(bookUpdateDto, previousBook);
-        previousBook.setAuthor(author);
+        if(author != null)previousBook.setAuthor(author);
         return previousBook;
     }
     public void mapBaseDtoToEntity(BookBaseDto dto, Book book) {
-        book.setTitle(dto.getTitle());
-        book.setTitle(dto.getTitle());
-        book.setGenre(dto.getGenre());
+        if(dto.getTitle() != null)book.setTitle(dto.getTitle());
+        if(dto.getPublishedYear() != null)book.setPublishedYear(dto.getPublishedYear());
+        if(dto.getGenre() != null)book.setGenre(dto.getGenre());
     }
     public void mapEntityToBaseDto(Book book, BookGetDto dto) {
         dto.setTitle(book.getTitle());
-        dto.setTitle(book.getTitle());
+        dto.setPublishedYear(book.getPublishedYear());
         dto.setGenre(book.getGenre());
-        dto.setStatus(book.getStatus());
     }
 }

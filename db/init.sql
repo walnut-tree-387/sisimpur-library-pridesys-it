@@ -23,7 +23,7 @@ CREATE TABLE books (
     published_year INT,
     genre VARCHAR(100),
     delete_status VARCHAR(20) NOT NULL DEFAULT 'NO',
-    available_status VARCHAR(20) NOT NULL DEFAULT 'AVAILABLE',
+    status VARCHAR(20) NOT NULL DEFAULT 'AVAILABLE',
     FOREIGN KEY (author_id) REFERENCES authors(id) ON DELETE CASCADE
 );
 CREATE TABLE book_lent (

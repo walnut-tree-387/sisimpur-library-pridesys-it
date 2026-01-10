@@ -25,10 +25,10 @@ public class Book {
     private String genre;
 
     @Column(name = "published_year")
-    private int publishedYear;
+    private Long publishedYear;
 
     @Enumerated(EnumType.STRING)
-    private AvailableStatus status = AvailableStatus.AVAILABLE;
+    private AvailableStatus availableStatus = AvailableStatus.AVAILABLE;
 
     @ManyToOne()
     @JoinColumn(name = "author_id")
