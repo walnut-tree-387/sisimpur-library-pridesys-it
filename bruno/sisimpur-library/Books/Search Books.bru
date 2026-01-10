@@ -1,0 +1,21 @@
+meta {
+  name: Search Books
+  type: http
+  seq: 4
+}
+
+get {
+  url: http://localhost:8080/api/v1/books/search
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "authorName" : "Rick", // Wildcard Search
+  //   "bookName": "THe", // Prefix Search
+  //   "genre": "Fantasy", // Filter / Exact Match
+  //   "publishedYear" : 1939, // Filter / Exact Match
+    "availableStatus" : "AVAILABLE" // Filter / Exact Match
+  }
+}
