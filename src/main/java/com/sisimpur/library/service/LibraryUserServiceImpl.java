@@ -7,6 +7,7 @@ import com.sisimpur.library.dto.users.LibraryUserUpdateDto;
 import com.sisimpur.library.exceptions.types.ResourceNotFoundException;
 import com.sisimpur.library.model.DeleteStatus;
 import com.sisimpur.library.model.LibraryUser;
+import com.sisimpur.library.model.UserStatus;
 import com.sisimpur.library.repository.LibraryUserRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -59,6 +60,13 @@ public class LibraryUserServiceImpl implements LibraryUserService{
     @Override
     public LibraryUserGetDto getUserById(Long id) {
         return libraryUserConverter.doGetMapping(getById(id));
+    }
+
+    @Override
+    public void changeUserStatus(Long id) {
+        LibraryUser user = getById(id);
+        user.setStatus(user.getStatus().equals(UserStatus.ACTIVE) ? UserStatus.DISABLED : UserStatus.ACTIVE);
+        libraryUserRepository.save(user);
     }
 
     @Override

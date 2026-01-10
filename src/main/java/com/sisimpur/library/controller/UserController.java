@@ -7,6 +7,8 @@ import com.sisimpur.library.dto.users.LibraryUserCreateDto;
 import com.sisimpur.library.dto.users.LibraryUserGetDto;
 import com.sisimpur.library.dto.users.LibraryUserUpdateDto;
 import com.sisimpur.library.service.LibraryUserService;
+import jakarta.validation.Valid;
+import org.springframework.data.web.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +25,7 @@ public class UserController {
     }
 
     @PostMapping()
-    public ResponseEntity<LibraryUserGetDto> create(@RequestBody LibraryUserCreateDto createDto){
+    public ResponseEntity<LibraryUserGetDto> create(@Valid @RequestBody LibraryUserCreateDto createDto){
         return new ResponseEntity<>(libraryUserService.create(createDto), HttpStatus.CREATED);
     }
     @GetMapping("/{id}")
@@ -41,7 +43,12 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
     @GetMapping("/all")
-    public ResponseEntity<?> getAllUsers(@RequestParam Optional<Integer> page, @RequestParam Optional<Integer> size){
-        return new ResponseEntity<>(libraryUserService.getAllUsers(page, size), HttpStatus.OK);
+    public PagedModel<?> getAllUsers(@RequestParam Optional<Integer> page, @RequestParam Optional<Integer> size){
+        return new PagedModel<>(libraryUserService.getAllUsers(page, size));
+    }
+    @PutMapping("/change-status/{id}")
+    public ResponseEntity<Void> changeUserStatus(@PathVariable Long id){
+        libraryUserService.changeUserStatus(id);
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 }
