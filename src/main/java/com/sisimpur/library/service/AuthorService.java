@@ -5,7 +5,6 @@ import com.sisimpur.library.dto.authors.AuthorGetDto;
 import com.sisimpur.library.dto.authors.AuthorUpdateDto;
 import com.sisimpur.library.model.Author;
 import com.sisimpur.library.repository.AuthorRepository;
-import com.sisimpur.library.repository.LibraryUserRepository;
 import org.springframework.data.domain.Page;
 
 import java.util.Optional;

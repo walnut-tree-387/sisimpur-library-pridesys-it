@@ -1,8 +1,5 @@
 package com.sisimpur.library.controller;
 
-import com.sisimpur.library.dto.authors.AuthorCreateDto;
-import com.sisimpur.library.dto.authors.AuthorGetDto;
-import com.sisimpur.library.dto.authors.AuthorUpdateDto;
 import com.sisimpur.library.dto.users.LibraryUserCreateDto;
 import com.sisimpur.library.dto.users.LibraryUserGetDto;
 import com.sisimpur.library.dto.users.LibraryUserUpdateDto;
@@ -49,6 +46,6 @@ public class UserController {
     @PutMapping("/change-status/{id}")
     public ResponseEntity<Void> changeUserStatus(@PathVariable Long id){
         libraryUserService.changeUserStatus(id);
-        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

@@ -3,7 +3,6 @@ package com.sisimpur.library.converters;
 import com.sisimpur.library.dto.users.LibraryUserCreateDto;
 import com.sisimpur.library.dto.users.LibraryUserGetDto;
 import com.sisimpur.library.dto.users.LibraryUserUpdateDto;
-import com.sisimpur.library.model.Author;
 import com.sisimpur.library.model.LibraryUser;
 import org.springframework.stereotype.Component;
 

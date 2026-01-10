@@ -1,7 +1,6 @@
 package com.sisimpur.library.controller;
 
 import com.sisimpur.library.dto.BookLentDto;
-import com.sisimpur.library.dto.authors.AuthorCreateDto;
 import com.sisimpur.library.service.BookProcessingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +21,7 @@ public class BookProcessingController {
     }
     @PutMapping("/return")
     public ResponseEntity<?> returnBooks(@RequestBody BookLentDto bookLentDto) {
+        bookProcessingService.returnBooks(bookLentDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

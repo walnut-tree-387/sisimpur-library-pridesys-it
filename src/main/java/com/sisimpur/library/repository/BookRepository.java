@@ -1,10 +1,5 @@
 package com.sisimpur.library.repository;
 
-import com.sisimpur.library.model.Author;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.sisimpur.library.model.Book;

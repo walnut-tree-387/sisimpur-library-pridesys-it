@@ -5,7 +5,6 @@ import com.sisimpur.library.dto.books.BookGetDto;
 import com.sisimpur.library.dto.books.BookUpdateDto;
 import com.sisimpur.library.model.Book;
 import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 import java.util.Optional;
