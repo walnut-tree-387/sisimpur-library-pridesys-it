@@ -20,11 +20,12 @@ public class LibraryUserConverter {
         libraryUserGetDto.setName(libraryUser.getName());
         libraryUserGetDto.setEmail(libraryUser.getEmail());
         libraryUserGetDto.setId(libraryUser.getId());
+        libraryUserGetDto.setStatus(libraryUser.getStatus());
         return libraryUserGetDto;
     }
     public LibraryUser doUpdateMapping(LibraryUserUpdateDto dto, LibraryUser libraryUser) {
-        libraryUser.setName(dto.getName());
-        libraryUser.setEmail(dto.getEmail());
+        if(dto.getName() != null)libraryUser.setName(dto.getName());
+        if(dto.getEmail() != null)libraryUser.setEmail(dto.getEmail());
         return libraryUser;
     }
 }

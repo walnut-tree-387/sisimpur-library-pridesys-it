@@ -15,5 +15,6 @@ public interface LibraryUserService {
     void delete(Long id);
     void update(Long id, LibraryUserUpdateDto updateDto);
     LibraryUserGetDto getUserById(Long id);
+    void changeUserStatus(Long id);
     Page<LibraryUserRepository.LibraryUserExt> getAllUsers(Optional<Integer> page, Optional<Integer> size);
 }
