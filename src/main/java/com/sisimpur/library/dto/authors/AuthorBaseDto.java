@@ -7,4 +7,5 @@ import lombok.Setter;
 @Setter
 public class AuthorBaseDto {
     private String name;
+    private String biography;
 }

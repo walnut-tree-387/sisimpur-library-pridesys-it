@@ -4,10 +4,16 @@ import com.sisimpur.library.converters.AuthorConverter;
 import com.sisimpur.library.dto.authors.AuthorCreateDto;
 import com.sisimpur.library.dto.authors.AuthorGetDto;
 import com.sisimpur.library.dto.authors.AuthorUpdateDto;
+import com.sisimpur.library.dto.books.BookCreateDto;
 import com.sisimpur.library.exceptions.types.ResourceNotFoundException;
 import com.sisimpur.library.model.Author;
 import com.sisimpur.library.model.DeleteStatus;
 import com.sisimpur.library.repository.AuthorRepository;
+import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -55,5 +61,12 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     public AuthorGetDto getAuthorById(Long id) {
         return authorConverter.doGetMapping(getById(id));
+    }
+
+    @Override
+    public Page<AuthorRepository.AuthorExt> getAllAuthors(Optional<Integer> page, Optional<Integer> size) {
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        Pageable pageable = PageRequest.of(page.orElse(0), size.orElse(10), sort);
+        return authorRepository.getAllAuthors(pageable);
     }
 }
