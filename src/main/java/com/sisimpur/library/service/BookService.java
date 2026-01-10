@@ -18,4 +18,5 @@ public interface BookService {
     void update(Long id, BookUpdateDto bookUpdateDto);
     Page<BookGetDto> searchBooks(Map<String, Object> searchParams,
                                  Optional<Integer> page, Optional<Integer> size);
+    void changeAvailabilityStatusById(Long id);
 }

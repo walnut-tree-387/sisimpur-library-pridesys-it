@@ -6,6 +6,7 @@ import com.sisimpur.library.dto.books.BookGetDto;
 import com.sisimpur.library.dto.books.BookUpdateDto;
 import com.sisimpur.library.exceptions.types.ResourceNotFoundException;
 import com.sisimpur.library.model.Author;
+import com.sisimpur.library.model.AvailableStatus;
 import com.sisimpur.library.model.DeleteStatus;
 import com.sisimpur.library.repository.predicates.BookPredicateFactory;
 import org.springframework.data.domain.Page;
@@ -71,6 +72,16 @@ public class BookServiceImpl implements BookService{
         Pageable pageable = PageRequest.of(page.orElse(0), size.orElse(10), sort);
         return bookRepository.findAll(BookPredicateFactory.searchBook(searchParams), pageable)
                 .map(bookConverter::doGetMapping);
+    }
+
+    @Override
+    public void changeAvailabilityStatusById(Long id) {
+        Book book = getById(id);
+        book.setAvailableStatus(
+                book.getAvailableStatus().equals(AvailableStatus.AVAILABLE) ?
+                        AvailableStatus.UNAVAILABLE : AvailableStatus.AVAILABLE
+        );
+        bookRepository.save(book);
     }
 
     @Override
