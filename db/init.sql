@@ -45,19 +45,19 @@ CREATE TABLE book_lent (
 
 
 -- Insert sample users
-INSERT INTO library_users (name, email) VALUES
-('Alice', 'alice@example.com'),
-('Bob', 'bob@example.com');
+INSERT INTO library_users (name, email, status, delete_status) VALUES
+('Alice', 'alice@example.com', 'ACTIVE', 'NO'),
+('Bob', 'bob@example.com', 'ACTIVE', 'NO');
 
 -- Insert sample authors
-INSERT INTO authors (name, biography) VALUES
-('J.K. Rowling', 'British author, best known for Harry Potter.'),
-('George R.R. Martin', 'American novelist and creator of Game of Thrones.');
+INSERT INTO authors (name, biography, delete_status) VALUES
+('J.K. Rowling', 'British author, best known for Harry Potter.', 'NO'),
+('George R.R. Martin', 'American novelist and creator of Game of Thrones.', 'NO');
 
 -- Insert sample books
-INSERT INTO books (title, author_id, published_year, genre) VALUES
-('Harry Potter and the Sorcerer''s Stone', 1, 1997, 'Fantasy'),
-('Harry Potter and the Chamber of Secrets', 1, 1998, 'Fantasy'),
-('A Game of Thrones', 2, 1996, 'Epic Fantasy'),
-('A Clash of Kings', 2, 1998, 'Epic Fantasy');
+INSERT INTO books (title, author_id, published_year, genre, available_status, delete_status) VALUES
+('Harry Potter and the Sorcerer''s Stone', 1, 1997, 'Fantasy', 'AVAILABLE', 'NO'),
+('Harry Potter and the Chamber of Secrets', 1, 1998, 'Fantasy', 'AVAILABLE', 'NO'),
+('A Game of Thrones', 2, 1996, 'Epic Fantasy', 'AVAILABLE', 'NO'),
+('A Clash of Kings', 2, 1998, 'Epic Fantasy', 'AVAILABLE', 'NO');
 
