@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import com.sisimpur.library.model.Book;
 import com.sisimpur.library.repository.BookRepository;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -79,6 +80,15 @@ public class BookServiceImpl implements BookService{
                         AvailableStatus.UNAVAILABLE : AvailableStatus.AVAILABLE
         );
         bookRepository.save(book);
+    }
+
+    @Override
+    public void deleteAuthorBooks(Long authorId) {
+        List<Book> bookList = bookRepository.findBooksByAuthorId(authorId);
+        for(Book book : bookList) {
+            book.setDeleteStatus(DeleteStatus.YES);
+            bookRepository.save(book);
+        }
     }
 
     @Override

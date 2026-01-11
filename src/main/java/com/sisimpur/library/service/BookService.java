@@ -18,4 +18,5 @@ public interface BookService {
     Page<BookGetDto> searchBooks(Map<String, Object> searchParams,
                                  Optional<Integer> page, Optional<Integer> size);
     void changeAvailabilityStatusById(Long id);
+    void deleteAuthorBooks(Long authorId);
 }

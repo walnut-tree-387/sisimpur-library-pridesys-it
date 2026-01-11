@@ -30,7 +30,13 @@ public class BookPredicateFactory {
                     cb.like(cb.lower(root.get("title")),  value.toString().toLowerCase() + "%"); // Prefix Search
             case "authorName" -> {
                 Join<Object, Object> authorJoin = root.join("author", JoinType.INNER);
-                yield cb.like(cb.lower(authorJoin.get("name")), "%" + value.toString().toLowerCase() + "%"); // Wildcard Search
+                yield cb.and(
+                        cb.like(
+                                cb.lower(authorJoin.get("name")),
+                                "%" + value.toString().toLowerCase() + "%"   // WildCard Search
+                        ),
+                        cb.equal(authorJoin.get("deleteStatus"), "NO")   // Excluding the deleted author from the search
+                );
             }
             case "genre" ->
                     cb.equal(root.get("genre"), value); // Filter / Exact Match

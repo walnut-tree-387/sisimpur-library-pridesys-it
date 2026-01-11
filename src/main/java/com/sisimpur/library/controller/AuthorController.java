@@ -46,6 +46,8 @@ public class AuthorController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
         authorService.delete(id);
+        // After Deleting the author - flagging his books also as deleted
+        bookService.deleteAuthorBooks(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
     @GetMapping("/all")
